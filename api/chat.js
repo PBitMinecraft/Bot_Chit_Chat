@@ -32,9 +32,16 @@ export default async (req, res) => {
         reply = `You said: ${message}`;
     }
 
-    const channel = client.channels.cache.get('YOUR_DISCORD_CHANNEL_ID');
+    const channel = client.channels.cache.get('1271114927481819208');
     if (channel) {
-        await channel.send(message);
+        try {
+            await channel.send(message);
+        } catch (error) {
+            console.error('Error sending message:', error);
+            return res.status(500).json({ message: 'Failed to send message to Discord channel' });
+        }
+    } else {
+        return res.status(404).json({ message: 'Discord channel not found' });
     }
 
     res.status(200).json({ reply });
