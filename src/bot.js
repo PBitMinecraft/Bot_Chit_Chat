@@ -8,7 +8,7 @@ client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.login('MTI3MTE1NDI4MzExMDQ2NTU5Ng.Gv3zE0.f1rtfcZCBxEo3TtAfs0HSb8wl_jJDZ06UyfjGc');
+client.login('DISCORD_BOT_TOKEN');
 
 app.use(express.json());
 
