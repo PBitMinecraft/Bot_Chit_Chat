@@ -8,7 +8,7 @@ client.once('ready', () => {
     console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.login('MTI3MTE1NDI4MzExMDQ2NTU5Ng.GZyoEi.XfmR0jWHVve2fGt87Q3nQLWgvsjVZCySeOhf0I');
+client.login('MTI3MTE1NDI4MzExMDQ2NTU5Ng.Gv3zE0.f1rtfcZCBxEo3TtAfs0HSb8wl_jJDZ06UyfjGc');
 
 app.use(express.json());
 
