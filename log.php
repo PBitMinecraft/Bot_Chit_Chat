@@ -33,5 +33,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     header("Location: thank_you.php?message=" . urlencode($response_message));
     exit();
+} else {
+    // Handle or deny other methods if needed
+    header("HTTP/1.1 405 Method Not Allowed");
+    echo "Method Not Allowed";
+    exit();
 }
+?>
 ?>
