@@ -38,7 +38,11 @@
 
         input.addEventListener('keydown', async function(event) {
             if (event.key === 'Enter') {
-                const message = input.value;
+                const message = input.value.trim();
+                if (!message) {
+                    return;
+                }
+
                 chat.innerHTML += `<p><strong>You:</strong> ${message}</p>`;
                 input.value = '';
 
@@ -49,7 +53,8 @@
                 });
 
                 const data = await response.json();
-                chat.innerHTML += `<p><strong>Bot:</strong> ${data.reply}</p>`;
+                const botReply = response.ok ? data.reply : (data.message || 'Something went wrong');
+                chat.innerHTML += `<p><strong>Bot:</strong> ${botReply}</p>`;
             }
         });
     </script>
