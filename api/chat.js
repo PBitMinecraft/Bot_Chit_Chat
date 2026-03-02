@@ -21,21 +21,27 @@ export default async (req, res) => {
 
     const { message } = req.body;
 
+    if (typeof message !== 'string' || !message.trim()) {
+        return res.status(400).json({ message: 'A non-empty string message is required' });
+    }
+
+    const normalizedMessage = message.trim();
+
     if (!isBotReady) {
         return res.status(500).json({ message: 'Bot is not ready yet' });
     }
 
     let reply;
-    if (message.toLowerCase() === 'ping') {
+    if (normalizedMessage.toLowerCase() === 'ping') {
         reply = 'Pong!';
     } else {
-        reply = `You said: ${message}`;
+        reply = `You said: ${normalizedMessage}`;
     }
 
     const channel = client.channels.cache.get('1271114927481819208');
     if (channel) {
         try {
-            await channel.send(message);
+            await channel.send(normalizedMessage);
         } catch (error) {
             console.error('Error sending message:', error);
             return res.status(500).json({ message: 'Failed to send message to Discord channel' });
